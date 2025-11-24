@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Github](https://github.com/VirginiaPat/article-preview-component-master.git)
+- Solution URL: [Github](https://github.com/VirginiaPat/article-code.git)
 - Live Site URL: [Netlify](https://article-compon.netlify.app/)
 
 ## My process
