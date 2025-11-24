@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="./script.js"></script>
+    <title>Article preview component</title>
+  </head>
+  <body
+    class="flex flex-col gap-3 items-center justify-center h-screen bg-grey-200"
+  >
+    <!--hidden header for accesibility reasons(screen readers)  -->
+    <header aria-labelledby="article-preview-component">
+      <h1 id="article-preview-component" class="hidden">
+        Article preview component
+      </h1>
+    </header>
+    <!-- Card container -->
+    <main
+      class="relative flex flex-col items-center justify-center w-[327px] rounded-[10px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] bg-white md:flex-row md:gap-8 md:w-[608px] lg:gap-10 lg:w-[730px]"
+    >
+      <!-- Card image -->
+      <img
+        class="h-[200px] w-[327px] rounded-t-[10px] object-cover mb-8 md:h-[346px] md:w-[229px] md:object-left md:mb-0 md:rounded-none md:rounded-tl-[10px] md:rounded-bl-[10px] lg:h-[280px] lg:w-[285px]"
+        src="./images/drawers.jpg"
+        alt=""
+      />
+
+      <!-- container with texts  -->
+      <div class="flex flex-col gap-6 pl-6 pr-6 md:pl-0 md:pr-9 lg:pr-10">
+        <p class="text-preset1-bold text-grey-900">
+          Shift the overall look and feel by adding these wonderful touches to
+          furniture in your home
+        </p>
+        <p class="text-preset2-medium text-grey-500">
+          Ever been in a room and felt like something was missing? Perhaps it
+          felt slightly bare and uninviting. I've got some simple tips to help
+          you make any room feel complete.
+        </p>
+
+        <!-- VISIBLE ONLY FOR MD AND LG------------------------------------->
+        <!-- avatar, name and share button container -->
+        <div class="hidden md:flex md:flex-row md:justify-between">
+          <!-- avatar and name container -->
+          <div class="md:flex md:flex-row md:items-center md:gap-4">
+            <!-- avatar -->
+            <img
+              class="md:w-10 md:h-10 md:rounded-full"
+              src="./images/avatar-michelle.jpg"
+              alt=""
+            />
+            <!-- name and date container -->
+            <div class="md:flex md:flex-col">
+              <p class="md:text-preset2-bold md:text-grey-900">
+                Michelle Appleton
+              </p>
+              <p class="md:text-preset2-medium md:text-grey-400">28 Jun 2020</p>
+            </div>
+          </div>
+          <!-- share btn container -->
+          <div class="md:flex md:felx-col md:justify-center">
+            <button
+              type="button"
+              id="share-btn-tbl-desktop"
+              class="cursor-pointer"
+              aria-label="Share"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="md:w-8 md:h-8 group"
+                viewBox="0 0 48 48"
+              >
+                <!-- Circle background -->
+                <path
+                  class="md:fill-grey-200 group-hover:fill-grey-500 group-active:fill-grey-900"
+                  d="M0.48 23.9999C0.48 36.9892 11.0108 47.52 23.9999 47.52c12.9893 0 23.5201 -10.5308 23.5201 -23.5201C47.52 11.0108 36.9892 0.48 23.9999 0.48 11.0108 0.48 0.48 11.0108 0.48 23.9999Z"
+                ></path>
+
+                <!-- Arrow -->
+                <path
+                  class="md:fill-grey-500 group-hover:fill-grey-200"
+                  d="M11.3354 31.539c0.6162 -6.9487 3.8605 -13.2403 13.8937 -13.2403v-4.22c0.0017 -0.1826 0.0566 -0.3606 0.1579 -0.5126 0.1012 -0.152 0.2444 -0.2712 0.4123 -0.3432 0.1678 -0.0719 0.353 -0.0935 0.5328 -0.0619 0.1799 0.0314 0.3466 0.1146 0.4801 0.2392l9.5606 9.0169c0.092 0.0867 0.1655 0.1913 0.2156 0.3073 0.0501 0.116 0.0761 0.2412 0.0761 0.3676s-0.026 0.2516 -0.0761 0.3678c-0.0501 0.116 -0.1236 0.2206 -0.2156 0.3073l-9.5459 9.0202c-0.1335 0.1246 -0.3002 0.2079 -0.4801 0.2392 -0.1799 0.0316 -0.365 0.01 -0.5328 -0.0619 -0.1679 -0.072 -0.3111 -0.1911 -0.4124 -0.3431 -0.1012 -0.152 -0.1561 -0.33 -0.1578 -0.5126v-4.2167c-6.4533 0 -9.5561 1.5232 -12.2779 4.3738 -0.6207 0.6389 -1.7041 0.1492 -1.6305 -0.7271Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- --------------------------------------------------------------- -->
+      </div>
+
+      <!-- VISIBLE ONLY FOR MOBILE------------------------------------->
+      <!-- avatar, name and share button container-->
+      <div
+        id="avatar-container"
+        class="flex flex-row gap-16 justify-between rounded-b-[10px] w-[327px] pb-4.5 mt-12 md:hidden"
+      >
+        <!-- avatar and name container -->
+        <div class="flex flex-row gap-4 pl-6">
+          <!-- avatar -->
+          <img
+            class="w-10 h-10 rounded-full"
+            src="./images/avatar-michelle.jpg"
+            alt=""
+          />
+          <!-- name and date container -->
+          <div class="flex flex-col">
+            <p class="text-preset2-bold text-grey-900">Michelle Appleton</p>
+            <p class="text-preset2-medium text-grey-400">28 Jun 2020</p>
+          </div>
+        </div>
+        <!-- share btn container -->
+        <div class="pr-6 flex felx-col justify-center">
+          <button
+            type="button"
+            id="share-btn-mobile"
+            class="cursor-pointer"
+            aria-label="Share"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-8 h-8 group"
+              viewBox="0 0 48 48"
+            >
+              <!-- Circle background -->
+              <path
+                class="fill-grey-200 group-hover:fill-grey-500 group-active:fill-grey-900"
+                d="M0.48 23.9999C0.48 36.9892 11.0108 47.52 23.9999 47.52c12.9893 0 23.5201 -10.5308 23.5201 -23.5201C47.52 11.0108 36.9892 0.48 23.9999 0.48 11.0108 0.48 0.48 11.0108 0.48 23.9999Z"
+              ></path>
+
+              <!-- Arrow -->
+              <path
+                class="fill-grey-500 group-hover:fill-grey-200"
+                d="M11.3354 31.539c0.6162 -6.9487 3.8605 -13.2403 13.8937 -13.2403v-4.22c0.0017 -0.1826 0.0566 -0.3606 0.1579 -0.5126 0.1012 -0.152 0.2444 -0.2712 0.4123 -0.3432 0.1678 -0.0719 0.353 -0.0935 0.5328 -0.0619 0.1799 0.0314 0.3466 0.1146 0.4801 0.2392l9.5606 9.0169c0.092 0.0867 0.1655 0.1913 0.2156 0.3073 0.0501 0.116 0.0761 0.2412 0.0761 0.3676s-0.026 0.2516 -0.0761 0.3678c-0.0501 0.116 -0.1236 0.2206 -0.2156 0.3073l-9.5459 9.0202c-0.1335 0.1246 -0.3002 0.2079 -0.4801 0.2392 -0.1799 0.0316 -0.365 0.01 -0.5328 -0.0619 -0.1679 -0.072 -0.3111 -0.1911 -0.4124 -0.3431 -0.1012 -0.152 -0.1561 -0.33 -0.1578 -0.5126v-4.2167c-6.4533 0 -9.5561 1.5232 -12.2779 4.3738 -0.6207 0.6389 -1.7041 0.1492 -1.6305 -0.7271Z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!--MOBILE POP UP------------------------------------------------>
+      <!-- main container -->
+      <div
+        id="mobile-popup"
+        class="hidden flex-row gap-16 justify-between rounded-b-[10px] w-[327px] bg-grey-900 pb-4 pt-4 mt-10.75"
+      >
+        <!-- text and social icons -->
+        <div class="flex flex-row items-center gap-4 pl-6">
+          <!-- text -->
+          <p class="text-preset3 text-grey-400">share</p>
+          <!--social -->
+          <div class="flex flex-row gap-4">
+            <a class="social-icon" aria-label="Facebook page" href="#"
+              ><img class="w-5 h-5" src="./images/icon-facebook.svg" alt=""
+            /></a>
+            <a class="social-icon" aria-label="Twitter" href="#">
+              <img class="w-5 h-5" src="./images/icon-twitter.svg" alt="" />
+            </a>
+            <a class="social-icon" aria-label="Pinterest" href="#">
+              <img class="w-5 h-5" src="./images/icon-pinterest.svg" alt="" />
+            </a>
+          </div>
+        </div>
+        <!-- share btn container -->
+        <div class="flex pr-6 flex-col justify-center">
+          <button
+            type="button"
+            id="share-btn-mobile-popup"
+            class="cursor-pointer"
+            aria-label="Share"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-8 h-8 group"
+              viewBox="0 0 48 48"
+            >
+              <!-- Circle background -->
+              <path
+                class="fill-grey-500 group-hover:fill-grey-200 group-active:fill-grey-900"
+                d="M0.48 23.9999C0.48 36.9892 11.0108 47.52 23.9999 47.52c12.9893 0 23.5201 -10.5308 23.5201 -23.5201C47.52 11.0108 36.9892 0.48 23.9999 0.48 11.0108 0.48 0.48 11.0108 0.48 23.9999Z"
+              ></path>
+
+              <!-- Arrow -->
+              <path
+                class="fill-grey-200 group-hover:fill-grey-500 group-active:fill-grey-200"
+                d="M11.3354 31.539c0.6162 -6.9487 3.8605 -13.2403 13.8937 -13.2403v-4.22c0.0017 -0.1826 0.0566 -0.3606 0.1579 -0.5126 0.1012 -0.152 0.2444 -0.2712 0.4123 -0.3432 0.1678 -0.0719 0.353 -0.0935 0.5328 -0.0619 0.1799 0.0314 0.3466 0.1146 0.4801 0.2392l9.5606 9.0169c0.092 0.0867 0.1655 0.1913 0.2156 0.3073 0.0501 0.116 0.0761 0.2412 0.0761 0.3676s-0.026 0.2516 -0.0761 0.3678c-0.0501 0.116 -0.1236 0.2206 -0.2156 0.3073l-9.5459 9.0202c-0.1335 0.1246 -0.3002 0.2079 -0.4801 0.2392 -0.1799 0.0316 -0.365 0.01 -0.5328 -0.0619 -0.1679 -0.072 -0.3111 -0.1911 -0.4124 -0.3431 -0.1012 -0.152 -0.1561 -0.33 -0.1578 -0.5126v-4.2167c-6.4533 0 -9.5561 1.5232 -12.2779 4.3738 -0.6207 0.6389 -1.7041 0.1492 -1.6305 -0.7271Z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- TABLET AND DESKTOP POP-UP--------------------------------------------->
+      <div
+        id="tablet-desktop-popup"
+        class="hidden md:hidden absolute top-50 -right-17.75 drop-shadow-[0_10px_10px_rgba(201, 213, 225,0.5)] z-10 lg:top-32"
+      >
+        <div class="relative">
+          <div
+            class="bg-grey-900 w-62 h-13.75 rounded-[10px] flex items-center justify-center"
+          >
+            <div class="flex gap-6">
+              <p class="text-preset3 text-grey-400">share</p>
+              <div class="flex gap-4 items-center">
+                <a class="social-icon" aria-label="Facebook page" href="#"
+                  ><img class="w-5 h-5" src="./images/icon-facebook.svg" alt=""
+                /></a>
+                <a class="social-icon" aria-label="Twitter" href="#">
+                  <img class="w-5 h-5" src="./images/icon-twitter.svg" alt="" />
+                </a>
+                <a class="social-icon" aria-label="Pinterest" href="#">
+                  <img
+                    class="w-5 h-5"
+                    src="./images/icon-pinterest.svg"
+                    alt=""
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-grey-900 w-8.5 h-8.5 rotate-45 absolute left-27.5 -bottom-2 -z-10"
+          ></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="text-xs text-preset2-medium text-grey-500 text-center">
+      Challenge by
+      <a
+        class="text-green-800"
+        href="https://www.frontendmentor.io?ref=challenge"
+        target="_blank"
+        >Frontend Mentor</a
+      >.<br />
+      Coded by
+      <a
+        href="https://www.frontendmentor.io/profile/VirginiaPat"
+        target="_blank"
+        >Virginia Patrika</a
+      >.
+    </footer>
+  </body>
+</html>

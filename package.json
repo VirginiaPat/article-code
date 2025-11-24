@@ -1,0 +1,16 @@
+{
+  "name": "article-preview-component",
+  "version": "1.0.0",
+  "description": "Frontend Mentor Challenge",
+  "main": "index.js",
+  "scripts": {
+    "watch": "npx @tailwindcss/cli -i ./input.css -o ./css/style.css --watch",
+    "build": "npx @tailwindcss/cli -i ./input.css -o ./css/style.css"
+  },
+  "author": "Virginia Patrika",
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.12",
+    "tailwindcss": "^4.0.12"
+  }
+}
