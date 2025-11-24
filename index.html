@@ -41,10 +41,10 @@
 
       <!-- container with texts  -->
       <div class="flex flex-col gap-6 pl-6 pr-6 md:pl-0 md:pr-9 lg:pr-10">
-        <h1 class="text-preset1-bold text-grey-900">
+        <h2 class="text-preset1-bold text-grey-900">
           Shift the overall look and feel by adding these wonderful touches to
           furniture in your home
-        </h1>
+        </h2>
         <p class="text-preset2-medium text-grey-500">
           Ever been in a room and felt like something was missing? Perhaps it
           felt slightly bare and uninviting. I've got some simple tips to help
@@ -258,14 +258,16 @@
               </div>
             </div>
           </div>
+
           <button
             type="button"
             id="close-popup-btn-tb-dskt"
             aria-haspopup="dialog"
             aria-expanded="false"
-            aria-controls="share-popup"
-            class="absolute -top-6 right-0 text-grey-200 cursor-pointer"
+            aria-controls="tablet-desktop-popup"
             aria-label="Close popup"
+            aria-describedby="close-popup-instructions"
+            class="absolute -top-6 right-0 text-grey-200 cursor-pointer focus-visible-outline"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -282,6 +284,11 @@
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
+          <!-- Hidden instructions for screen reader users -->
+          <span id="close-popup-instructions" class="sr-only">
+            Press Enter or Space to close the share dialog.
+          </span>
+
           <div
             class="bg-grey-900 w-8.5 h-8.5 rotate-45 absolute left-27.5 -bottom-2 -z-10"
           ></div>
