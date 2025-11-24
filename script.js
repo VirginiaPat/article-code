@@ -83,13 +83,13 @@ closePopUpTabletDesktop.addEventListener("click", () => {
 
 // keyboard focus management for popup in mobiles
 const openPopup = function () {
-  popupMobile.classList.remove("hidden");
-  popupMobile.setAttribute("aria-hidden", "false");
-  popupMobile.focus(); // move keyboard focus to pop-up
+  popupMobile.classList.remove("hidden"); // Show modal visuall
+  popupMobile.setAttribute("aria-hidden", "false"); // Make modal accessible
+  popupMobile.focus(); // Move focus inside modal for keyboard users pop-up
 };
 
 const closePopup = function () {
-  popupMobile.classList.add("hidden");
+  popupMobile.classList.add("hidden"); // Hide modal visually
   popupMobile.setAttribute("aria-hidden", "true");
-  // return focus to the element that opened the pop-up
+  // Hide modal from assistive tech
 };
