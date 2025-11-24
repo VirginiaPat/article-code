@@ -78,8 +78,9 @@
               aria-haspopup="dialog"
               aria-expanded="false"
               aria-controls="share-popup"
-              class="cursor-pointer"
               aria-label="Share"
+              aria-describedby="share-instructions"
+              class="cursor-pointer focus-visible-outline"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -99,6 +100,11 @@
                 ></path>
               </svg>
             </button>
+
+            <!-- Hidden instructions for screen reader users -->
+            <span id="share-instructions" class="sr-only">
+              Press Enter or Space to open the share dialog.
+            </span>
           </div>
         </div>
         <!-- --------------------------------------------------------------- -->
