@@ -7,6 +7,9 @@ const avatarContainer = document.getElementById("avatar-container");
 
 const shareBtnTabletDesktop = document.getElementById("share-btn-tbl-desktop");
 const popupTabletDesktop = document.getElementById("tablet-desktop-popup");
+const closePopUpTabletDesktop = document.getElementById(
+  "close-popup-btn-tb-dskt"
+);
 
 // popup functionality mobile
 const mobilePopupFunction = function () {
@@ -57,3 +60,36 @@ document.addEventListener("click", function (e) {
     popupTabletDesktop.classList.add("md:hidden");
   }
 });
+
+// keyboard focus management for popup in tablets and desktops
+shareBtnTabletDesktop.addEventListener("click", () => {
+  const isOpen = popupTabletDesktop.hasAttribute("hidden") === false;
+  if (isOpen) {
+    popupTabletDesktop.setAttribute("hidden", "");
+    shareBtnTabletDesktop.setAttribute("aria-expanded", "false");
+    shareBtnTabletDesktop.focus(); // Return focus to button when closing
+  } else {
+    popupTabletDesktop.removeAttribute("hidden");
+    shareBtnTabletDesktop.setAttribute("aria-expanded", "true");
+    popupTabletDesktop.focus(); // Move focus to pop-up when opening
+  }
+});
+
+closePopUpTabletDesktop.addEventListener("click", () => {
+  popupTabletDesktop.setAttribute("hidden", "");
+  shareBtnTabletDesktop.setAttribute("aria-expanded", "false");
+  shareBtnTabletDesktop.focus(); // Return focus to button on close
+});
+
+// keyboard focus management for popup in mobiles
+const openPopup = function () {
+  popupMobile.classList.remove("hidden");
+  popupMobile.setAttribute("aria-hidden", "false");
+  popupMobile.focus(); // move keyboard focus to pop-up
+};
+
+const closePopup = function () {
+  popupMobile.classList.add("hidden");
+  popupMobile.setAttribute("aria-hidden", "true");
+  // return focus to the element that opened the pop-up
+};
