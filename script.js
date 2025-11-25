@@ -12,20 +12,30 @@ const closePopUpBtnTabletDesktop = document.getElementById(
 );
 
 //MOBILE popup functionality
-const closeMobilePopup = function () {
-  popupMobile.classList.remove("flex");
-  popupMobile.classList.add("hidden");
-  avatarContainer.classList.remove("hidden");
-  avatarContainer.classList.add("flex");
-};
-const openMobilePopup = function () {
-  avatarContainer.classList.remove("flex");
-  avatarContainer.classList.add("hidden");
-  popupMobile.classList.remove("hidden");
-  popupMobile.classList.add("flex");
+
+// Helper to toggle classes for popup and avatar container
+const togglePopup = function (popupElement, avatarElement, showPopup) {
+  if (showPopup) {
+    popupElement.classList.remove("hidden");
+    popupElement.classList.add("flex");
+    avatarElement.classList.remove("flex");
+    avatarElement.classList.add("hidden");
+  } else {
+    popupElement.classList.remove("flex");
+    popupElement.classList.add("hidden");
+    avatarElement.classList.remove("hidden");
+    avatarElement.classList.add("flex");
+  }
 };
 
-const togglemobilePopup = function () {
+const openMobilePopup = function () {
+  togglePopup(popupMobile, avatarContainer, true);
+};
+const closeMobilePopup = function () {
+  togglePopup(popupMobile, avatarContainer, false);
+};
+
+const toggleMobilePopup = function () {
   if (popupMobile.classList.contains("hidden")) {
     openMobilePopup();
   } else {
@@ -33,37 +43,44 @@ const togglemobilePopup = function () {
   }
 };
 
-shareBtnMobile.addEventListener("click", togglemobilePopup);
-shareBtnMobilePopup.addEventListener("click", togglemobilePopup);
+shareBtnMobile.addEventListener("click", toggleMobilePopup);
+shareBtnMobilePopup.addEventListener("click", toggleMobilePopup);
 
 // close popup when clicking outside
 document.addEventListener("click", (e) => {
-  if (!shareBtnMobile.contains(e.target) && !popupMobile.contains(e.target)) {
-    closeMobilePopup();
+  if (
+    popupMobile.classList.contains("open") &&
+    !shareBtnMobile.contains(e.target) &&
+    !popupMobile.contains(e.target)
+  ) {
+    closeMobilePopup(); //close only when needed
+    e.stopPropagation(); //Prevent other click  handlers if appropriate
   }
 });
 
-// close popup when clicking ESC key
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !popupMobile.classList.contains("hidden")) {
-    closeMobilePopup();
-  }
-});
 ///////////////////////////////////////////////////////////////////////////////////////
 
 //TABLET-DESKTOP popup functionality
+const togglePopupTabltDeskt = function (popupElement, shareBtn, showPopup) {
+  if (showPopup) {
+    popupElement.removeAttribute("hidden");
+    popupElement.classList.remove("md:hidden");
+    popupElement.classList.add("md:block");
+    shareBtn.setAttribute('aria-expanded", "true');
+  } else {
+    popupElement.setAttribute("hidden", "");
+    popupElement.classList.remove("md:block");
+    popupElement.classList.add("md:hidden");
+    shareBtn.setAttribute('aria-expanded", "false');
+  }
+};
+
 const openTabletDesktPopup = function () {
-  popupTabletDesktop.removeAttribute("hidden");
-  popupTabletDesktop.classList.remove("md:hidden");
-  popupTabletDesktop.classList.add("md:block");
-  shareBtnTabletDesktop.setAttribute("aria-expanded", "true");
+  togglePopupTabltDeskt(popupTabletDesktop, shareBtnTabletDesktop, true);
 };
 
 const closeTabletDesktPopup = function () {
-  popupTabletDesktop.setAttribute("hidden", "");
-  popupTabletDesktop.classList.remove("md:block");
-  popupTabletDesktop.classList.add("hidden");
-  shareBtnTabletDesktop.setAttribute("aria-expanded", "false");
+  togglePopupTabltDeskt(popupTabletDesktop, shareBtnTabletDesktop, false);
 };
 
 shareBtnTabletDesktop.addEventListener("click", () => {
@@ -92,8 +109,11 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// close popup when clicking ESC key
+// ALL BREAKPOINTS: close popup when clicking ESC key
 document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !popupMobile.classList.contains("hidden")) {
+    closeMobilePopup();
+  }
   if (e.key === "Escape" && !popupTabletDesktop.hasAttribute("hidden")) {
     closeTabletDesktPopup();
   }
