@@ -49,7 +49,7 @@ shareBtnMobilePopup.addEventListener("click", toggleMobilePopup);
 // close popup when clicking outside
 document.addEventListener("click", (e) => {
   if (
-    popupMobile.classList.contains("open") &&
+    popupMobile.classList.contains("flex") &&
     !shareBtnMobile.contains(e.target) &&
     !popupMobile.contains(e.target)
   ) {
@@ -66,12 +66,12 @@ const togglePopupTabltDeskt = function (popupElement, shareBtn, showPopup) {
     popupElement.removeAttribute("hidden");
     popupElement.classList.remove("md:hidden");
     popupElement.classList.add("md:block");
-    shareBtn.setAttribute('aria-expanded", "true');
+    shareBtn.setAttribute("aria-expanded", "true");
   } else {
     popupElement.setAttribute("hidden", "");
     popupElement.classList.remove("md:block");
     popupElement.classList.add("md:hidden");
-    shareBtn.setAttribute('aria-expanded", "false');
+    shareBtn.setAttribute("aria-expanded", "false");
   }
 };
 
