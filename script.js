@@ -39,8 +39,13 @@ const toggleMobilePopup = function () {
   }
 };
 
-shareBtnMobile.addEventListener("click", toggleMobilePopup);
-shareBtnMobilePopup.addEventListener("click", toggleMobilePopup);
+if (shareBtnMobile) {
+  shareBtnMobile.addEventListener("click", toggleMobilePopup);
+}
+
+if (shareBtnMobilePopup) {
+  shareBtnMobilePopup.addEventListener("click", toggleMobilePopup);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -67,20 +72,24 @@ const closeTabletDesktPopup = function () {
   togglePopupTabletDeskt(popupTabletDesktop, shareBtnTabletDesktop, false);
 };
 
-shareBtnTabletDesktop.addEventListener("click", () => {
-  const hidden = popupTabletDesktop.hasAttribute("hidden");
+if (shareBtnTabletDesktop) {
+  shareBtnTabletDesktop.addEventListener("click", () => {
+    const hidden = popupTabletDesktop.hasAttribute("hidden");
 
-  if (hidden) {
-    openTabletDesktPopup();
-  } else {
-    closeTabletDesktPopup();
-  }
-});
+    if (hidden) {
+      openTabletDesktPopup();
+    } else {
+      closeTabletDesktPopup();
+    }
+  });
+}
 
 // close popup button
-closePopUpBtnTabletDesktop.addEventListener("click", () =>
-  closeTabletDesktPopup()
-);
+if (closePopUpBtnTabletDesktop) {
+  closePopUpBtnTabletDesktop.addEventListener("click", () =>
+    closeTabletDesktPopup()
+  );
+}
 
 // close popup when clicking outside
 document.addEventListener("click", (e) => {
