@@ -7,89 +7,94 @@ const avatarContainer = document.getElementById("avatar-container");
 
 const shareBtnTabletDesktop = document.getElementById("share-btn-tbl-desktop");
 const popupTabletDesktop = document.getElementById("tablet-desktop-popup");
-const closePopUpTabletDesktop = document.getElementById(
+const closePopUpBtnTabletDesktop = document.getElementById(
   "close-popup-btn-tb-dskt"
 );
 
-// popup functionality mobile
-const mobilePopupFunction = function () {
+//MOBILE popup functionality
+const closeMobilePopup = function () {
+  popupMobile.classList.remove("flex");
+  popupMobile.classList.add("hidden");
+  avatarContainer.classList.remove("hidden");
+  avatarContainer.classList.add("flex");
+};
+const openMobilePopup = function () {
+  avatarContainer.classList.remove("flex");
+  avatarContainer.classList.add("hidden");
+  popupMobile.classList.remove("hidden");
+  popupMobile.classList.add("flex");
+};
+
+const togglemobilePopup = function () {
   if (popupMobile.classList.contains("hidden")) {
-    avatarContainer.classList.remove("flex");
-    avatarContainer.classList.add("hidden");
-    popupMobile.classList.remove("hidden");
-    popupMobile.classList.add("flex");
+    openMobilePopup();
   } else {
-    popupMobile.classList.remove("flex");
-    popupMobile.classList.add("hidden");
-    avatarContainer.classList.remove("hidden");
-    avatarContainer.classList.add("flex");
+    closeMobilePopup();
   }
 };
 
-shareBtnMobile.addEventListener("click", mobilePopupFunction);
-shareBtnMobilePopup.addEventListener("click", mobilePopupFunction);
+shareBtnMobile.addEventListener("click", togglemobilePopup);
+shareBtnMobilePopup.addEventListener("click", togglemobilePopup);
 
-// popup functionality tablet-desktop
-shareBtnTabletDesktop.addEventListener("click", function () {
-  if (popupTabletDesktop.classList.contains("md:hidden")) {
-    popupTabletDesktop.classList.remove("md:hidden");
-    popupTabletDesktop.classList.add("md:block");
-  } else {
-    popupTabletDesktop.classList.remove("md:block");
-    popupTabletDesktop.classList.add("md:hidden");
-  }
-});
-
-// close popup when clicking outside-Mobile
-document.addEventListener("click", function (e) {
+// close popup when clicking outside
+document.addEventListener("click", (e) => {
   if (!shareBtnMobile.contains(e.target) && !popupMobile.contains(e.target)) {
-    popupMobile.classList.remove("flex");
-    popupMobile.classList.add("hidden");
-    avatarContainer.classList.remove("hidden");
-    avatarContainer.classList.add("flex");
+    closeMobilePopup();
   }
 });
 
-// close popup when clicking outside-tablet and desktop
-document.addEventListener("click", function (e) {
+// close popup when clicking ESC key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !popupMobile.classList.contains("hidden")) {
+    closeMobilePopup();
+  }
+});
+///////////////////////////////////////////////////////////////////////////////////////
+
+//TABLET-DESKTOP popup functionality
+const openTabletDesktPopup = function () {
+  popupTabletDesktop.removeAttribute("hidden");
+  popupTabletDesktop.classList.remove("md:hidden");
+  popupTabletDesktop.classList.add("md:block");
+  shareBtnTabletDesktop.setAttribute("aria-expanded", "true");
+};
+
+const closeTabletDesktPopup = function () {
+  popupTabletDesktop.setAttribute("hidden", "");
+  popupTabletDesktop.classList.remove("md:block");
+  popupTabletDesktop.classList.add("hidden");
+  shareBtnTabletDesktop.setAttribute("aria-expanded", "false");
+};
+
+shareBtnTabletDesktop.addEventListener("click", () => {
+  const hidden = popupTabletDesktop.hasAttribute("hidden");
+
+  if (hidden) {
+    openTabletDesktPopup();
+  } else {
+    closeTabletDesktPopup();
+  }
+});
+
+// close popup button
+closePopUpBtnTabletDesktop.addEventListener("click", () =>
+  closeTabletDesktPopup()
+);
+
+// close popup when clicking outside
+document.addEventListener("click", (e) => {
   if (
     !shareBtnTabletDesktop.contains(e.target) &&
-    !popupTabletDesktop.contains(e.target)
+    !popupTabletDesktop.contains(e.target) &&
+    !closePopUpBtnTabletDesktop.contains(e.target)
   ) {
-    popupTabletDesktop.classList.remove("md:block");
-    popupTabletDesktop.classList.add("md:hidden");
+    closeTabletDesktPopup();
   }
 });
 
-// keyboard focus management for popup in tablets and desktops
-shareBtnTabletDesktop.addEventListener("click", () => {
-  const isOpen = popupTabletDesktop.hasAttribute("hidden") === false;
-  if (isOpen) {
-    popupTabletDesktop.setAttribute("hidden", "");
-    shareBtnTabletDesktop.setAttribute("aria-expanded", "false");
-    shareBtnTabletDesktop.focus(); // Return focus to button when closing
-  } else {
-    popupTabletDesktop.removeAttribute("hidden");
-    shareBtnTabletDesktop.setAttribute("aria-expanded", "true");
-    popupTabletDesktop.focus(); // Move focus to pop-up when opening
+// close popup when clicking ESC key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !popupTabletDesktop.hasAttribute("hidden")) {
+    closeTabletDesktPopup();
   }
 });
-
-closePopUpTabletDesktop.addEventListener("click", () => {
-  popupTabletDesktop.setAttribute("hidden", "");
-  shareBtnTabletDesktop.setAttribute("aria-expanded", "false");
-  shareBtnTabletDesktop.focus(); // Return focus to button on close
-});
-
-// keyboard focus management for popup in mobiles
-const openPopup = function () {
-  popupMobile.classList.remove("hidden"); // Show modal visuall
-  popupMobile.setAttribute("aria-hidden", "false"); // Make modal accessible
-  popupMobile.focus(); // Move focus inside modal for keyboard users pop-up
-};
-
-const closePopup = function () {
-  popupMobile.classList.add("hidden"); // Hide modal visually
-  popupMobile.setAttribute("aria-hidden", "true");
-  // Hide modal from assistive tech
-};
