@@ -54,14 +54,13 @@ document.addEventListener("click", (e) => {
     !popupMobile.contains(e.target)
   ) {
     closeMobilePopup(); //close only when needed
-    e.stopPropagation(); //Prevent other click  handlers if appropriate
   }
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
 //TABLET-DESKTOP popup functionality
-const togglePopupTabltDeskt = function (popupElement, shareBtn, showPopup) {
+const togglePopupTabletDeskt = function (popupElement, shareBtn, showPopup) {
   if (showPopup) {
     popupElement.removeAttribute("hidden");
     popupElement.classList.remove("md:hidden");
@@ -76,11 +75,11 @@ const togglePopupTabltDeskt = function (popupElement, shareBtn, showPopup) {
 };
 
 const openTabletDesktPopup = function () {
-  togglePopupTabltDeskt(popupTabletDesktop, shareBtnTabletDesktop, true);
+  togglePopupTabletDeskt(popupTabletDesktop, shareBtnTabletDesktop, true);
 };
 
 const closeTabletDesktPopup = function () {
-  togglePopupTabltDeskt(popupTabletDesktop, shareBtnTabletDesktop, false);
+  togglePopupTabletDeskt(popupTabletDesktop, shareBtnTabletDesktop, false);
 };
 
 shareBtnTabletDesktop.addEventListener("click", () => {
@@ -101,6 +100,7 @@ closePopUpBtnTabletDesktop.addEventListener("click", () =>
 // close popup when clicking outside
 document.addEventListener("click", (e) => {
   if (
+    popupTabletDesktop.contains("md:block") &&
     !shareBtnTabletDesktop.contains(e.target) &&
     !popupTabletDesktop.contains(e.target) &&
     !closePopUpBtnTabletDesktop.contains(e.target)
