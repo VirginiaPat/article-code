@@ -15,17 +15,13 @@ const closePopUpBtnTabletDesktop = document.getElementById(
 
 // Helper to toggle classes for popup and avatar container
 const togglePopup = function (popupElement, avatarElement, showPopup) {
-  if (showPopup) {
-    popupElement.classList.remove("hidden");
-    popupElement.classList.add("flex");
-    avatarElement.classList.remove("flex");
-    avatarElement.classList.add("hidden");
-  } else {
-    popupElement.classList.remove("flex");
-    popupElement.classList.add("hidden");
-    avatarElement.classList.remove("hidden");
-    avatarElement.classList.add("flex");
-  }
+  // Show popupElement if showPopup is true, else hide it
+  popupElement.classList.toggle("flex", showPopup);
+  popupElement.classList.toggle("hidden", !showPopup);
+
+  // Show avatarElement if showPopup is false, else hide it
+  avatarElement.classList.toggle("hidden", showPopup);
+  avatarElement.classList.toggle("flex", !showPopup);
 };
 
 const openMobilePopup = function () {
@@ -45,17 +41,6 @@ const toggleMobilePopup = function () {
 
 shareBtnMobile.addEventListener("click", toggleMobilePopup);
 shareBtnMobilePopup.addEventListener("click", toggleMobilePopup);
-
-// close popup when clicking outside
-document.addEventListener("click", (e) => {
-  if (
-    popupMobile.classList.contains("flex") &&
-    !shareBtnMobile.contains(e.target) &&
-    !popupMobile.contains(e.target)
-  ) {
-    closeMobilePopup(); //close only when needed
-  }
-});
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -100,6 +85,14 @@ closePopUpBtnTabletDesktop.addEventListener("click", () =>
 // close popup when clicking outside
 document.addEventListener("click", (e) => {
   if (
+    popupMobile.classList.contains("flex") &&
+    !shareBtnMobile.contains(e.target) &&
+    !popupMobile.contains(e.target)
+  ) {
+    closeMobilePopup(); //close only when needed
+  }
+
+  if (
     popupTabletDesktop.classList.contains("md:block") &&
     !shareBtnTabletDesktop.contains(e.target) &&
     !popupTabletDesktop.contains(e.target) &&
@@ -111,10 +104,15 @@ document.addEventListener("click", (e) => {
 
 // ALL BREAKPOINTS: close popup when clicking ESC key
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !popupMobile.classList.contains("hidden")) {
-    closeMobilePopup();
-  }
-  if (e.key === "Escape" && !popupTabletDesktop.hasAttribute("hidden")) {
-    closeTabletDesktPopup();
+  if (e.key === "Escape") {
+    if (!popupMobile.classList.contains("hidden")) {
+      closeMobilePopup();
+      e.preventDefault(); // Prevent default Escape key behavior
+      e.stopPropagation(); // Stop event from reaching other listeners
+    } else if (!popupTabletDesktop.hasAttribute("hidden")) {
+      closeTabletDesktPopup();
+      e.preventDefault();
+      e.stopPropagation();
+    }
   }
 });
