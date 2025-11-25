@@ -100,7 +100,7 @@ closePopUpBtnTabletDesktop.addEventListener("click", () =>
 // close popup when clicking outside
 document.addEventListener("click", (e) => {
   if (
-    popupTabletDesktop.contains("md:block") &&
+    popupTabletDesktop.classList.contains("md:block") &&
     !shareBtnTabletDesktop.contains(e.target) &&
     !popupTabletDesktop.contains(e.target) &&
     !closePopUpBtnTabletDesktop.contains(e.target)
